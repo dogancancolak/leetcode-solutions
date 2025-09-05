@@ -39,17 +39,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        key = -101
-        unique_pos = 0
-        while unique_pos < len(nums):
-            idx = unique_pos
-            while key >= nums[idx]:
-                idx +=1
-                if idx == len(nums):
-                    return unique_pos
-            nums[unique_pos]= nums[idx]
-            key = nums[unique_pos]
-            unique_pos +=1
-    
-sol = Solution()
-print(sol.removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+        if not nums:
+            return 0
+
+        write = 1
+        for read in range(1, len(nums)): 
+            if nums[read] != nums[read - 1]: 
+                nums[write] = nums[read] 
+                write += 1 
+
+        return write
